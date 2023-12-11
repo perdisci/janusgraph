@@ -18,6 +18,12 @@ Start JanusGraph server container. Expose port 8182 to be able to connect from o
 
 Setup server config file to run with Cassandra and Elasticsearch or Lucene
 
+```
+For Lucene, edit conf/janusgraph-cql-lucene.properties and add
+index.search.backend = lucene
+index.search.directory = /var/lib/janusgraph/index
+```
+
 Start Gremlin console
 `docker run -it --name janusgraph_client --hostname jgclient --net janusgraph_network janusgraph/janusgraph:latest bash`
 
