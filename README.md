@@ -33,3 +33,6 @@ gremlin> :remote console
 gremlin> g.V()
 ```
 
+# Add gremlin visualizer
+`docker run --rm -d -p 3000:3000 -p 3001:3001 --name=gremlin_visualizer --hostname=jgviz --network=janusgraph_network prabushitha/gremlin-visualizer:latest`
+

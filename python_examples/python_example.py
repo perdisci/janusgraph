@@ -9,11 +9,14 @@ from gremlin_python.driver import serializer
 # you need to turn GraphSONSerializersV3 in the JanusGraph server config
 message_serializer = serializer.GraphSONSerializersV3d0()
 
-connection = DriverRemoteConnection("ws://jgserver:8182/gremlin", "g", message_serializer=message_serializer)
+# JGSERVER = "jgserver"
+JGSERVER = "localhost"
+connection = DriverRemoteConnection(f"ws://{JGSERVER}:8182/gremlin", "g", message_serializer=message_serializer)
 g = traversal().withRemote(connection)
 
 g.V().drop().iterate()
 g.E().drop().iterate()
 v1 = g.addV('vertex').property('name', 'v1').next()
-v1 = g.addV('vertex').property('name', 'v2').next()
+v2 = g.addV('vertex').property('name', 'v2').next()
+e = g.addE('path').from_(v1).to(v2).next()
 print(g.V().toList())
